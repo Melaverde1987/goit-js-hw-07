@@ -19,16 +19,11 @@ gallery.addEventListener("click", selectImage);
 
 function selectImage(event) {
   event.preventDefault();
-  if (!event.target.classList.contains("gallery__image")) {
-    return;
-  }
-
-  let lightbox = new SimpleLightbox(".gallery li a", {
-    captionsData: "alt",
-    captionDelay: 250,
-  });
-
-  lightbox.on("show.simplelightbox", function () {
-    //
-  });
 }
+
+const lightbox = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionDelay: 250,
+});
+
+lightbox.on("show.simplelightbox", function () {});
