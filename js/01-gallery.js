@@ -19,9 +19,9 @@ const markup = galleryItems
 
 gallery.insertAdjacentHTML("beforeend", markup);
 
-gallery.addEventListener("click", selectImage);
+gallery.addEventListener("click", handlerClick);
 
-function selectImage(event) {
+function handlerClick(event) {
   event.preventDefault();
   if (!event.target.classList.contains("gallery__image")) {
     return;
@@ -34,11 +34,12 @@ function selectImage(event) {
     </div>
     `);
 
-  instance.show(() =>
-    document.addEventListener("keydown", (event) => {
-      if (event.code === "Escape") {
-        instance.close();
-      }
-    })
-  );
+  instance.show(() => document.addEventListener("keydown", handlerEscape));
+
+  function handlerEscape(event) {
+    if (event.code === "Escape") {
+      instance.close();
+      document.removeEventListener("keydown", handlerEscape);
+    }
+  }
 }
